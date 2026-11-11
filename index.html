@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delatores | Codebase Intelligence</title>
+    <meta
+      name="description"
+      content="Public GitHub repository analysis for executive technical risk reporting."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">D</div>
+        <div>
+          <p class="eyebrow">Delatores</p>
+          <h1>Codebase Intelligence</h1>
+        </div>
+      </div>
+      <nav aria-label="Sample repositories">
+        <button class="ghost-button" data-sample="https://github.com/expressjs/express">
+          Express
+        </button>
+        <button class="ghost-button" data-sample="https://github.com/pallets/flask">
+          Flask
+        </button>
+        <button class="ghost-button" data-sample="https://github.com/dotnet/runtime">
+          .NET Runtime
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="analysis-panel" aria-labelledby="repo-form-heading">
+        <div class="intro-copy">
+          <p class="eyebrow">Public repo MVP</p>
+          <h2 id="repo-form-heading">Translate codebase signals into business risk.</h2>
+          <p>
+            Paste a public GitHub repository URL to generate an executive-style
+            health report using observable signals: activity, docs, tests, CI,
+            dependencies, ownership concentration, and project structure.
+          </p>
+        </div>
+
+        <form id="repo-form" class="repo-form">
+          <label for="repo-url">GitHub repository URL</label>
+          <div class="input-row">
+            <input
+              id="repo-url"
+              name="repo-url"
+              type="url"
+              placeholder="https://github.com/org/repo"
+              autocomplete="off"
+              required
+            >
+            <button type="submit" class="primary-button">
+              Analyze
+            </button>
+          </div>
+          <p class="form-note">
+            Uses public GitHub API data only. Large repositories may return partial file-tree data.
+          </p>
+        </form>
+      </section>
+
+      <section id="status-region" class="status-region" aria-live="polite"></section>
+
+      <section id="dashboard" class="dashboard is-hidden" aria-label="Repository risk dashboard">
+        <div class="dashboard-head">
+          <div>
+            <p class="eyebrow" id="repo-owner">Repository</p>
+            <h2 id="repo-name">Awaiting analysis</h2>
+          </div>
+          <div class="dashboard-actions">
+            <a id="repo-link" class="secondary-button" href="#" target="_blank" rel="noreferrer">
+              View Repo
+            </a>
+            <button id="print-report" class="secondary-button" type="button">
+              Print Report
+            </button>
+          </div>
+        </div>
+
+        <div class="score-layout">
+          <article class="overall-score">
+            <p class="eyebrow">Overall technical risk</p>
+            <div class="score-meter" aria-hidden="true">
+              <span id="score-value">--</span>
+            </div>
+            <h3 id="risk-label">Not scored</h3>
+            <p id="risk-summary">
+              Connect a public repository to generate the first directional score.
+            </p>
+          </article>
+
+          <div class="metric-grid" id="metric-grid"></div>
+        </div>
+
+        <div class="report-layout">
+          <section class="report-section" aria-labelledby="exec-summary-heading">
+            <div class="section-heading">
+              <p class="eyebrow">Briefing</p>
+              <h3 id="exec-summary-heading">Executive Summary</h3>
+            </div>
+            <div id="executive-summary" class="summary-list"></div>
+          </section>
+
+          <section class="report-section" aria-labelledby="risk-list-heading">
+            <div class="section-heading">
+              <p class="eyebrow">Priority</p>
+              <h3 id="risk-list-heading">Top Risks</h3>
+            </div>
+            <div id="risk-list" class="risk-list"></div>
+          </section>
+
+          <section class="report-section" aria-labelledby="questions-heading">
+            <div class="section-heading">
+              <p class="eyebrow">Conversation guide</p>
+              <h3 id="questions-heading">Questions To Ask The Team</h3>
+            </div>
+            <ol id="question-list" class="question-list"></ol>
+          </section>
+
+          <section class="report-section evidence-section" aria-labelledby="evidence-heading">
+            <div class="section-heading">
+              <p class="eyebrow">Traceability</p>
+              <h3 id="evidence-heading">Evidence Appendix</h3>
+            </div>
+            <div id="evidence-list" class="evidence-list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>
+        Scores are directional and based only on public repository signals. They are designed
+        to inform better questions, not replace human technical review.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
